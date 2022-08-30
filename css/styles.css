@@ -34,3 +34,89 @@ h1 {
     box-sizing: border-box;
     flex: 1 1 33%;
 }
+
+#campo1, #campo2, #campo3 {
+    border-top: none;
+}
+
+#campo1, #campo4, #campo7 {
+    border-left: none;
+}
+
+#campo7, #campo8, #campo9 {
+    border-bottom: none;
+}
+
+#campo3, #campo6, #campo9 {
+    border-right: none;
+}
+
+/* Símbolos */
+
+.x {
+    font-size: 65px;
+    color: #ff0000;
+    display: inline-block;
+    line-height: 100px;
+}
+
+.o {
+    width: 50px;
+    height: 50px;
+    border: 5px solid #008000;
+    border-radius: 50%;
+    display: inline-block;
+    margin-top: 17px;
+}
+
+/* Esconder */
+
+/* .hide {
+    display: none !important;
+} */
+
+/* Placar */
+
+#placar-container {
+    font-weight: bold;
+    margin-top: 30px;
+    font-size: 25px;
+    position: relative;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+#x-placar {
+    color: #ff0000;
+    margin-right: 3px;
+}
+
+#o-placar {
+    display: inline-block;
+    width: 18px;
+    height: 18px;
+    border: 2px solid #008000;
+    border-radius: 50%;
+    margin-right: 3px;
+}
+
+#campo-placar {
+    margin: 0 20px;
+}
+
+/* Mensagens */
+
+#mensagem p {
+    position: absolute;
+    margin-left: auto;
+    margin-right: auto;
+    left: 0;
+    right: 0;
+    top: 150px;
+    width: 500px;
+    font-size: 50px;
+    background-color: #000;
+    color: #fff;
+    padding: 20px;
+    display: none;
+}

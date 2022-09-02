@@ -26,6 +26,13 @@ for (let i = 0; i < campo.length; i++) {
 
             if (jogador1 == jogador2) {
                 jogador1++;
+
+                if(segundoJogador == "ia-jogador") {
+
+                    //  ia executa a jogada
+                    jogadorIa();
+                    jogador2++;
+                }
             } else {
                 jogador2++;
             }
@@ -33,6 +40,24 @@ for (let i = 0; i < campo.length; i++) {
             //verifica quem venceu 
             verificaVencedor();
         }
+    })
+}
+
+// para verificar o adversário 
+
+for(let i = 0; i < buttons.length; i++) {
+    
+    buttons[i].addEventListener("click", function() {
+        segundoJogador = this.getAttribute("id");
+
+        for(let j = 0; j < buttons.length; j++) {
+            buttons[j].style.display = 'none';
+        }
+
+        setTimeout(function () {
+            let container = document.querySelector("#container");
+            container.classList.remove("hide");
+        }, 500)
     })
 }
 
@@ -201,6 +226,8 @@ function declaraVencedor(vencedor) {
     } else {
         msg = "Deu Velha !!!";
     }
+    
+    // Exibindo a mensagem 
 
     mensagemTexto.innerHTML = msg;
     mensagemContainer.classList.remove("hide");
@@ -225,5 +252,35 @@ function declaraVencedor(vencedor) {
 
 }
 
-// Exibindo a mensagem 
+// lógica da ia 
+function jogadorIa() {
+
+    let cloneO = o.cloneNode(true);
+    contador = 0;
+    preenchido = 0;
+
+    for (let i = 0; i < campo.length; i++ ) {
+
+        let randomIa = Math.floor(Math.random() * 5);
+
+        //preenche se o filho estiver vazio
+        if(campo[i].childNodes[0] == undefined) {            
+            if(randomIa <=1) {
+                campo[i].appendChild(cloneO);
+                contador++;
+                break;
+
+                //verifica quantos estão preenchidos
+            } 
+        }else {
+            preenchido++;
+        }
+    }
+
+    if(contador == 0 && preenchido < 9) {
+        jogadorIa();
+    }
+}
+
+
 

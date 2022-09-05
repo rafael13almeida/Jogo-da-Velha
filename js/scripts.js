@@ -6,19 +6,16 @@ let mensagemContainer = document.querySelector("#mensagem");
 let mensagemTexto = document.querySelector("#mensagem p");
 let segundoJogador;
 
-//contador
+
 let jogador1 = 0;
 let jogador2 = 0;
 
-//adicionando o evento de cliques nos campos
 for (let i = 0; i < campo.length; i++) {
 
-    //quando alguém clicar no campo
     campo[i].addEventListener("click", function () {
 
         let el = checkElemento(jogador1, jogador2);
 
-        //verifica se tem campo marcado
         if (this.childNodes.length == 0) {
             let cloneEl = el.cloneNode(true);
 
@@ -29,7 +26,6 @@ for (let i = 0; i < campo.length; i++) {
 
                 if(segundoJogador == "ia-jogador") {
 
-                    //  ia executa a jogada
                     jogadorIa();
                     jogador2++;
                 }
@@ -37,13 +33,11 @@ for (let i = 0; i < campo.length; i++) {
                 jogador2++;
             }
 
-            //verifica quem venceu 
             verificaVencedor();
         }
     })
 }
 
-// para verificar o adversário 
 
 for(let i = 0; i < buttons.length; i++) {
     
@@ -61,7 +55,6 @@ for(let i = 0; i < buttons.length; i++) {
     })
 }
 
-//quem vai jogar
 function checkElemento(jogador1, jogador2) {
 
     if (jogador1 == jogador2) {
@@ -74,7 +67,6 @@ function checkElemento(jogador1, jogador2) {
     return el;
 }
 
-//função que verifica quem venceu
 function verificaVencedor() {
     let b1 = document.getElementById("campo1");
     let b2 = document.getElementById("campo2");
@@ -86,7 +78,6 @@ function verificaVencedor() {
     let b8 = document.getElementById("campo8");
     let b9 = document.getElementById("campo9");
 
-    //horizontal
     if (b1.childNodes.length > 0 && b2.childNodes.length > 0 && b3.childNodes.length > 0) {
 
         let b1Child = b1.childNodes[0].className;
@@ -125,8 +116,6 @@ function verificaVencedor() {
             declaraVencedor('o');
         }
     }
-
-    //vertical
 
     if (b1.childNodes.length > 0 && b4.childNodes.length > 0 && b7.childNodes.length > 0) {
 
@@ -167,7 +156,6 @@ function verificaVencedor() {
         }
     }
 
-    //diagonal
     if (b1.childNodes.length > 0 && b5.childNodes.length > 0 && b9.childNodes.length > 0) {
 
         let b1Child = b1.childNodes[0].className;
@@ -194,7 +182,6 @@ function verificaVencedor() {
         }
     }
 
-    // Deu velha
     let contador = 0;
 
     for (let i = 0; i < campo.length; i++) {
@@ -207,8 +194,6 @@ function verificaVencedor() {
         declaraVencedor('Deu velha');
     }
 }
-
-// Limpa o jogo, atualiza o vencedor e atualiza o placar
 
 function declaraVencedor(vencedor) {
     let campoPlacarx = document.querySelector("#placar-1");
@@ -226,23 +211,19 @@ function declaraVencedor(vencedor) {
     } else {
         msg = "Deu Velha !!!";
     }
-    
-    // Exibindo a mensagem 
+
 
     mensagemTexto.innerHTML = msg;
     mensagemContainer.classList.remove("hide");
 
-    // Para esconder novamente a mensagem
 
     setTimeout(function () {
         mensagemContainer.classList.add("hide");
     }, 3000)
 
-    // zerando as jogadas
     jogador1 = 0;
     jogador2 = 0;
 
-    // remove elementos dos campos
     let limpaCampo = document.querySelectorAll(".campo div");
 
 
@@ -252,7 +233,6 @@ function declaraVencedor(vencedor) {
 
 }
 
-// lógica da ia 
 function jogadorIa() {
 
     let cloneO = o.cloneNode(true);
@@ -263,15 +243,13 @@ function jogadorIa() {
 
         let randomIa = Math.floor(Math.random() * 5);
 
-        //preenche se o filho estiver vazio
         if(campo[i].childNodes[0] == undefined) {            
             if(randomIa <=1) {
                 campo[i].appendChild(cloneO);
                 contador++;
                 break;
-
-                //verifica quantos estão preenchidos
             } 
+
         }else {
             preenchido++;
         }
@@ -281,6 +259,3 @@ function jogadorIa() {
         jogadorIa();
     }
 }
-
-
-
